@@ -1,0 +1,16 @@
+version: '3'
+services:
+  flyte-sandbox:
+    image: cr.flyte.org/flyteorg/flyte-sandbox:dind
+    ports:
+      - "30080:30080"  # Admin port
+      - "30081:30081"  # Console port
+      - "30082:30082"  # Data proxy port
+      - "30084:30084"  # Flytepropeller port
+    environment:
+      - FLYTE_HOST=localhost
+      - FLYTE_PORT=30081
+      - FLYTE_ADMIN_PORT=30080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    privileged: true 
